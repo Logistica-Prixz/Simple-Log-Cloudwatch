@@ -1,0 +1,23 @@
+{
+  "name": "simple-log-cloudwatch",
+  "version": "1.0.0",
+  "description": "This library is useful to send logs to cloudwatch",
+  "main": "log4Cloudwatch.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "production": "npm run version:bump --silent && rm -f scripts.min.js && npm run minifyJS --silent && npm run version:add --silent"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Logistica-Prixz/Simple-Log-Cloudwatch.git"
+  },
+  "author": "cloudwatch, npm, aws",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Logistica-Prixz/Simple-Log-Cloudwatch/issues"
+  },
+  "homepage": "https://github.com/Logistica-Prixz/Simple-Log-Cloudwatch#readme",
+  "dependencies": {
+    "aws-sdk": "^2.673.0"
+  }
+}
