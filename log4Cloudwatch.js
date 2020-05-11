@@ -23,7 +23,6 @@ function _createLogStream(...params){
             logGroupName: params[0],
             logStreamName: params[1]
         }
-        console.log('antes de cw')
 
         cloudwatchlogs.createLogStream(parametersCW, async function(err, data) {
             if (err){
@@ -62,20 +61,16 @@ async function updateLogEvent(logStream,messages){
 
         let paramsEvent = {
             logEvents: arrayMessages,
-            logGroupName: 'avus-workers-monza',
-            logStreamName: "prueba-nombre"
+            logGroupName: this.logGroupName,
+            logStreamName: logStream
         };
-
-       
-
+        
         try{
             await _putLogEventsCW(paramsEvent,0)
             return resolve(true)
         }catch(error){
             return reject(error)
         }
-
-        /*console.log(arrayMessages,"mensajes",messages)*/
     })
 }
 
@@ -83,24 +78,16 @@ async function _putLogEventsCW(paramsEvent,tryNumbers,token){
     return new Promise(async (resolve, reject) => {
         cloudwatchlogs.putLogEvents(paramsEvent, async function(err, data) {
             if (err){
-                console.log(tryNumbers,"intentos")
                 if(tryNumbers>=2){
-                    console.log('regresando')
-                    return reject("ola")
+                    return reject(err)
                 }
-                console.log('++++++++++++++++++++++++++++++')
-                console.log(err.message.match(/\d+/))
-                console.log()
-                console.log('++++++++++++++++++++++++++++++')
                 if(err.code && err.code ==="InvalidSequenceTokenException"){
                     let numberToken = err.message.match(/\d+/)
                     try{
                         paramsEvent.sequenceToken = String(numberToken)
                         await _putLogEventsCW(paramsEvent,tryNumbers=tryNumbers+1,numberToken)
-                        console.log('win')
                         return resolve(true)
                     }catch(error){
-                        console.log('fail')
                         return reject(error)
                     }
                 }
