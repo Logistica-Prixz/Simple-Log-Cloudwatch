@@ -6,7 +6,7 @@ This library is useful to send logs to cloudwatch.
 ### Installation
 Install via NPM:
 ```
-npm i git+https://git@github.com/Logistica-Prixz/Simple-Log-Cloudwatch.git --save
+npm i git+ssh://git@github.com/Logistica-Prixz/Simple-Log-Cloudwatch.git --save
 ```
  ---
 ### Using
@@ -16,6 +16,22 @@ npm i git+https://git@github.com/Logistica-Prixz/Simple-Log-Cloudwatch.git --sav
 ```
 const  log4Cloudwatch  =  require('log4Cloudwatch');
 ```
+
+Next step is to set the credentials
+
+```
+logs4cloudwatch.config({
+    aws:{
+        accessKeyId: 'xxxx',
+        secretAccessKey: 'xxx',
+        region: 'xxx'  
+    },
+    cw: {
+        apiVersion: 'xxxx'
+    }
+})
+```
+
 You need to create the **Log Group** inside of [AWS](https://console.aws.amazon.com/).
 
 The next thing that you have to do, it's set the **Log Group**  that you will send the **Logs**
@@ -42,7 +58,19 @@ pr.updateLogEvent("xxx",["test-message-1","test-message-2"])
 #### Example
 ```
 //import 
-const  log4Cloudwatch  =  require('log4Cloudwatch');
+const  log4Cloudwatch  =  require('Simple-Log-Cloudwatch');
+
+//set the credentials of aws
+logs4cloudwatch.config({
+    aws:{
+        accessKeyId: 'xxxx',
+        secretAccessKey: 'xxx',
+        region: 'xxx'  
+    },
+    cw: {
+        apiVersion: 'xxxx'
+    }
+})
 
 //set Log Group
 log4Cloudwatch.setLogGroupName('xxxx')

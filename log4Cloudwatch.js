@@ -81,7 +81,7 @@ async function _putLogEventsCW(paramsEvent,tryNumbers,token){
                 if(tryNumbers>=2){
                     return reject(err)
                 }
-                if(err.code && err.code ==="InvalidSequenceTokenException"){
+                if(err.code && (err.code ==="InvalidSequenceTokenException" || err.code==='DataAlreadyAcceptedException')){
                     let numberToken = err.message.match(/\d+/)
                     try{
                         paramsEvent.sequenceToken = String(numberToken)
