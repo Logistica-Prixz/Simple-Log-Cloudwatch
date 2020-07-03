@@ -6,7 +6,7 @@ This library is useful to send logs to cloudwatch.
 ### Installation
 Install via NPM:
 ```
-npm i git+ssh://git@github.com/Logistica-Prixz/Simple-Log-Cloudwatch.git --save
+npm install git+https://git@github.com/Logistica-Prixz/Simple-Log-Cloudwatch.git
 ```
  ---
 ### Using
