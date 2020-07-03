@@ -14,7 +14,7 @@ npm i git+ssh://git@github.com/Logistica-Prixz/Simple-Log-Cloudwatch.git --save
  Import the package once it is installed
 
 ```
-const  log4Cloudwatch  =  require('log4Cloudwatch');
+const  log4Cloudwatch  =  require('simple-log-cloudwatch');
 ```
 
 Next step is to set the credentials
@@ -51,14 +51,14 @@ Finally to save the logs in **Cloudwatch** you need to invoke the function **upd
 *value*: Messages that will be send it to Cloudwatch
 
 ```
-pr.updateLogEvent("xxx",["test-message-1","test-message-2"])
+log4Cloudwatch.updateLogEvent("01-01-2020",["test-message-1","test-message-2"])
 ```
 
 ---
 #### Example
 ```
 //import 
-const  log4Cloudwatch  =  require('Simple-Log-Cloudwatch');
+const  log4Cloudwatch  =  require('simple-log-cloudwatch');
 
 //set the credentials of aws
 logs4cloudwatch.config({
@@ -76,7 +76,7 @@ logs4cloudwatch.config({
 log4Cloudwatch.setLogGroupName('xxxx')
 
 //create the logs
-pr.updateLogEvent("xxx",["test-message-1","test-message-2"])
+log4Cloudwatch.updateLogEvent("01-01-2020",["test-message-1","test-message-2"])
 ```
 ---
 ### Additional Info
